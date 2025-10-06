@@ -19,10 +19,19 @@ export class ERCanvas extends EventEmitter {
   constructor(containerOrCanvas, options = {}) {
     super();
     this.options = options;
-    this.container = containerOrCanvas instanceof HTMLCanvasElement ? containerOrCanvas : null;
+    const hasHTMLCanvas = typeof HTMLCanvasElement !== 'undefined';
+    const hasHTMLElement = typeof HTMLElement !== 'undefined';
+    const isCanvas = hasHTMLCanvas && containerOrCanvas instanceof HTMLCanvasElement;
+    const isElement = hasHTMLElement && containerOrCanvas instanceof HTMLElement;
+
+    this.container = isCanvas ? containerOrCanvas : null;
     if (!this.container) {
+      if (typeof document === 'undefined') {
+        throw new Error('ERCanvas requires a DOM environment with document available');
+      }
+
       this.container = document.createElement('canvas');
-      if (containerOrCanvas instanceof HTMLElement) {
+      if (isElement) {
         containerOrCanvas.appendChild(this.container);
       } else {
         throw new Error('ERCanvas requires a canvas or container element');
