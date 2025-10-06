@@ -37,3 +37,18 @@ Key capabilities exposed by `ERCanvas` include:
 The source files are authored as ES modules and can be consumed directly in modern browsers. Optional build scripts can be added for packaging (`package.json` contains placeholders for bundling and testing).
 
 Start the basic example by serving the repository with any static file server and navigating to `examples/basic.html` in a modern browser.
+
+## Docker usage
+
+This repository includes a Docker setup under the `docker/` directory that serves the static examples from inside a container. To run it locally:
+
+1. Build and start the container with Docker Compose:
+
+   ```bash
+   cd docker
+   docker compose up --build
+   ```
+
+2. Open <http://localhost:8080/examples/basic.html> in your browser to access the demo.
+
+Environment variables exposed in `docker/docker-compose.yml` let you customize the port, default file, and static root if needed.

@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  er-canvas:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DEFAULT_FILE=examples/basic.html
+      - STATIC_ROOT=.
+    restart: unless-stopped
