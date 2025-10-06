@@ -23,8 +23,9 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="module">
-      import { ERCanvas } from '../src/index.js';
+    <script src="../dist/er-canvas.umd.js"></script>
+    <script>
+      const { ERCanvas } = ERCanvasLib;
 
       const container = document.getElementById('app');
       const er = new ERCanvas(container, {
