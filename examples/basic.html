@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ERCanvas Basic Example</title>
+    <style>
+      body {
+        margin: 0;
+        background: #111;
+        color: #f0f0f0;
+        font-family: sans-serif;
+      }
+      #app {
+        width: 100vw;
+        height: 100vh;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { ERCanvas } from '../src/index.js';
+
+      const container = document.getElementById('app');
+      const er = new ERCanvas(container, {
+        grid: { enabled: true, size: 32, snap: true },
+      });
+      er.start();
+
+      const usersId = er.addTable({
+        id: 'Users',
+        name: 'Users',
+        position: { x: -150, y: 0 },
+        size: { width: 220 },
+        fields: [
+          { id: 'id', name: 'id', type: 'uuid', isPrimaryKey: true },
+          { id: 'email', name: 'email', type: 'text', isUnique: true },
+          { id: 'created_at', name: 'created_at', type: 'timestamp' },
+        ],
+      });
+
+      const postsId = er.addTable({
+        id: 'Posts',
+        name: 'Posts',
+        position: { x: 200, y: 80 },
+        size: { width: 220 },
+        fields: [
+          { id: 'id', name: 'id', type: 'uuid', isPrimaryKey: true },
+          { id: 'user_id', name: 'user_id', type: 'uuid', isForeignKey: true },
+          { id: 'title', name: 'title', type: 'text' },
+        ],
+      });
+
+      er.connect({
+        id: 'UserPosts',
+        from: { tableId: usersId, fieldId: 'id' },
+        to: { tableId: postsId, fieldId: 'user_id' },
+        cardinality: { from: '1', to: 'N' },
+      });
+
+      er.on('selection:change', (selection) => console.log('Selection', selection));
+    </script>
+  </body>
+</html>
