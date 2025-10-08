@@ -24,6 +24,8 @@ dist/             // prebuilt entry points (ESM and UMD bundles + type defs)
 
 See `examples/basic.html` for a complete example that instantiates `ERCanvas`, creates two tables, connects them, and listens to selection events.
 
+For real-time collaboration, the library exposes a `createYjsSyncPlugin` helper that wires ERCanvas to a [Yjs](https://docs.yjs.dev) document. Combining the plugin with a provider such as `y-webrtc` keeps diagram edits synchronized across multiple browser sessions. A ready-to-run demonstration is available in `examples/collaborative.html`.
+
 Key capabilities exposed by `ERCanvas` include:
 
 - Scene graph mutations via `addTable`, `addField`, `connect`, `removeTable`, etc.
