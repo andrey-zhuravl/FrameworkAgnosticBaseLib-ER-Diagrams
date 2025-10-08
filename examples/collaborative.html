@@ -72,10 +72,12 @@
       </p>
     </aside>
     <div id="app"></div>
+    <script src="../dist/er-canvas.umd.js"></script>
     <script type="module">
-      import { ERCanvas, createYjsSyncPlugin } from '../src/index.js';
       import * as Y from 'https://cdn.jsdelivr.net/npm/yjs@13.6.12/+esm';
       import { WebrtcProvider } from 'https://cdn.jsdelivr.net/npm/y-webrtc@10.3.8/+esm';
+
+      const { ERCanvas, createYjsSyncPlugin } = ERCanvasLib;
 
       const ROOM_NAME = 'er-canvas-collaborative-example';
       const doc = new Y.Doc();

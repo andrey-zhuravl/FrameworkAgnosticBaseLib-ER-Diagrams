@@ -45,6 +45,16 @@ export interface DiagramJSON {
   grid?: any;
 }
 
+export interface YjsSyncPluginOptions {
+  doc: any;
+  mapName?: string;
+  sceneKey?: string;
+  provider?: { connect?: () => void; disconnect?: () => void; shouldConnect?: boolean } | null;
+  onSynced?: (payload: { source: 'local' | 'remote'; data: DiagramJSON }) => void;
+}
+
+export declare function createYjsSyncPlugin(options: YjsSyncPluginOptions): (context: { er: ERCanvas }) => void;
+
 export interface ERCanvasOptions {
   width?: number | 'auto';
   height?: number | 'auto';
