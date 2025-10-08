@@ -75,14 +75,14 @@
     <script src="../dist/er-canvas.umd.js"></script>
     <script type="module">
       import * as Y from 'https://cdn.jsdelivr.net/npm/yjs@13.6.12/+esm';
-      import { WebrtcProvider } from 'https://cdn.jsdelivr.net/npm/y-webrtc@10.3.8/+esm';
+      import { WebrtcProvider } from 'https://cdn.jsdelivr.net/npm/y-webrtc@10.3.0/+esm';
 
       const { ERCanvas, createYjsSyncPlugin } = ERCanvasLib;
 
       const ROOM_NAME = 'er-canvas-collaborative-example';
       const doc = new Y.Doc();
       const provider = new WebrtcProvider(ROOM_NAME, doc, {
-        signaling: ['wss://signaling.yjs.dev'],
+        signaling: ['ws://localhost:4444'],
       });
 
       const statusEl = document.getElementById('status');

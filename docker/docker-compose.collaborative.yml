@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  er-canvas:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DEFAULT_FILE=examples/collaborative.html
+      - STATIC_ROOT=.
+    depends_on:
+      - signaling
+    restart: unless-stopped
+
+  signaling:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.signaling
+    ports:
+      - "4444:4444"
+    restart: unless-stopped
