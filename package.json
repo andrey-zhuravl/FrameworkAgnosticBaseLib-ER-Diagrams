@@ -1,0 +1,17 @@
+{
+  "name": "er-canvas",
+  "version": "0.1.0",
+  "description": "Framework-agnostic ER diagram canvas library",
+  "type": "module",
+  "main": "dist/er-canvas.umd.js",
+  "module": "dist/er-canvas.esm.js",
+  "types": "dist/er-canvas.d.ts",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint": "echo 'No lint configured'",
+    "test": "node scripts/test-runner.js"
+  },
+  "keywords": ["er", "diagram", "canvas", "library"],
+  "author": "",
+  "license": "MIT"
+}
